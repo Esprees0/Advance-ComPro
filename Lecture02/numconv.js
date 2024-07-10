@@ -17,8 +17,8 @@ console.log(parseInt('ABC'));
 console.log("********More Conversation Examples********")
 console.log(parseInt('1.5'));
 console.log(parseInt('1 + 1'));
-
 console.log(parseInt(`${1 + 1}`));
+
 console.log("********Convering numbers to strings********");
 console.log(num1.toString());
 console.log(flot.toString());

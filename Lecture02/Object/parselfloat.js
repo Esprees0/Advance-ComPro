@@ -5,4 +5,6 @@ function circumferencer(r) {
     return parseFloat(r) * 2.0 * Math.PI;
 }
 
+console.log(circumferencer("4.567abcdefgh"));
 
+console.log(circumferencer("abcdefgh"));
