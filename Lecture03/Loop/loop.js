@@ -18,4 +18,3 @@ console.log('-- for of --');
 for (let name of names) {
     console.log(name);
 }
-
