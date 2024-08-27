@@ -3,19 +3,18 @@ function longestUniqueSubarrayWithTargetSum(arr, targetSum) {
     let longestSubarray = [];    // ช่วงที่ยาวที่สุดที่ตรงตามเงื่อนไข
     let start = 0;              // ตำแหน่งเริ่มต้นของ sliding window
     let currentSum = 0;         // ผลรวมของช่วงปัจจุบัน
-    let charSet = new Set();    // เซ็ตเพื่อเก็บตัวเลขที่ไม่ซ้ำกัน
+    const counts = {};
 
     for (let end = 0; end < arr.length; end++) {
         const currentNum = arr[end];
 
         // ถ้าตัวเลขปัจจุบันอยู่ในเซ็ต (ซ้ำ) ต้องลบตัวเลขที่ไม่ซ้ำออกจากเซ็ตจนกว่าจะไม่มีการซ้ำ
-        while (charSet.has(currentNum)) {
-            charSet.delete(arr[start]);   // ลบตัวเลขที่ตำแหน่ง start ออกจากเซ็ต
-            currentSum -= arr[start];     // ลดผลรวมโดยการลบตัวเลขที่ถูกลบออก
-            start++;                      // ขยับตำแหน่งเริ่มต้นไปข้างหน้า
+        for (const io of arr) {
+            counts[io] = (counts[io] || 0) + 1;
         }
 
-        // เพิ่มตัวเลขปัจจุบันเข้าไปในเซ็ตและอัพเดตผลรวม
+        charset = arr.filter(num => counts[num] === 1);
+        charSet.sort((a, b) => a - b);        // เพิ่มตัวเลขปัจจุบันเข้าไปในเซ็ตและอัพเดตผลรวม
         charSet.add(currentNum);
         currentSum += currentNum;
 
@@ -31,7 +30,7 @@ function longestUniqueSubarrayWithTargetSum(arr, targetSum) {
     }
 
     // คืนค่าเป็นอ็อบเจ็กต์ที่ประกอบด้วยความยาวสูงสุดและช่วงที่ยาวที่สุด
-    return { maxLength, subarray: longestSubarray };
+    return { maxLength, subarray: longestSubarray, charSet };
 }
 
 // ทดสอบฟังก์ชัน
